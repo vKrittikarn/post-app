@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 const Input = (props) => {
   const [input, setInput] = useState('');
-  const {addPost} = props;
+  const { addPost } = props;
   const onChange = (event) => {
     setInput(event.target.value);
   };

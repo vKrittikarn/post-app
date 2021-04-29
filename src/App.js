@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import Navbar from './components/Navbar';
@@ -11,7 +11,7 @@ const App = () => {
   const [posts, setPosts] = useState([]);
 
   const addPost = (newPost) => {
-    setPosts([{id, title: newPost}, ...posts]);
+    setPosts([{ id, title: newPost }, ...posts]);
     id += 1;
   };
 
