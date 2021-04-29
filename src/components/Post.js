@@ -1,5 +1,5 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 const Post = (props) => {
   const { id, title, deletePost } = props;
   return (
@@ -20,6 +20,12 @@ const Post = (props) => {
       />
     </div>
   );
+};
+
+Post.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  deletePost: PropTypes.func.isRequired,
 };
 
 export default Post;
