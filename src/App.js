@@ -4,14 +4,22 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Input from './components/Input';
 import Post from './components/Post';
+import Search from './components/Search';
 
 let id = 1;
 
 const App = () => {
   const [posts, setPosts] = useState([]);
+  const [searchText, setSearchText] = useState('');
+
+  const addSearchText = (searchText) => {
+    setSearchText(searchText);
+  };
 
   const addPost = (newPost) => {
-    setPosts([{ id, title: newPost }, ...posts]);
+    setPosts((prevPost) => {
+      return [{ id, title: newPost }, ...prevPost];
+    });
     id += 1;
   };
 
@@ -24,14 +32,19 @@ const App = () => {
     <div className="App">
       <Navbar />
       <Input addPost={addPost} />
-      {posts.map((post) => (
-        <Post
-          key={post.id}
-          id={post.id}
-          title={post.title}
-          deletePost={removePost}
-        />
-      ))}
+      <Search addSearchText={addSearchText} />
+      {posts
+        .filter((post) => {
+          return post.title.includes(searchText);
+        })
+        .map((post) => (
+          <Post
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            deletePost={removePost}
+          />
+        ))}
     </div>
   );
 };
