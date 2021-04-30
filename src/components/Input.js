@@ -8,9 +8,10 @@ const Input = (props) => {
     setInput(event.target.value);
   };
 
-  const onKeyDown = (event) => {
-    const newPost = event.target.value;
-    if (event.key === 'Enter' && newPost) {
+  const onSubmit = (event) => {
+    event.preventDefault();
+    const newPost = event.target[0].value;
+    if (newPost) {
       addPost(newPost);
       setInput('');
     }
@@ -18,14 +19,19 @@ const Input = (props) => {
 
   return (
     <div className="Input">
-      <div className="Input__header">พิมพ์อะไรหน่อย</div>
-      <input
-        className="Input__field"
-        type="text"
-        onChange={onChange}
-        onKeyDown={onKeyDown}
-        value={input}
-      />
+      <form onSubmit={onSubmit} a>
+        <div className="Input__header">พิมพ์อะไรหน่อย</div>
+        <input
+          className="Input__field"
+          name="post"
+          type="text"
+          onChange={onChange}
+          value={input}
+        />
+        <button className="Input_button" type="submit">
+          โพสต์
+        </button>
+      </form>
     </div>
   );
 };
